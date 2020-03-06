@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLEVER-GLE</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>
+        <span>C</span><span>L</span><span>E</span><span>V</span><span>E</span><span>R</span>-<span>G</span><span>L</span><span>E</span>
+    </h1>
+    <form action="https://www.google.com/search" method="GET">
+        <div class="mx-auto mt-10 search-bar input-group mb-3">
+            <input name="q" type="text" class="form-control rounded-pill" placeholder="검색어를 입력하세요" aria-label="검색어를 입력하세요" aria-describedby="button-addon2">
+          </div>
+          <a class="btn btn-primary" href="https://www.naver.com/" role="button" style="
+          margin-left: 600px;  
+          ">NAVER</a>
+        </form>
+</body>
+<script type="text/javascript">
+    //	function id_pass_check(){
+            
+            //	alert(document.getElementById("user").value);
+            
+            //	if(document.getElementById("user").value=="아이디")
+            //		if(document.form.user.value=="아이디")
+            //		{
+            //			alert(document.getElementById("user").value);
+                        //document.getElementById("user").value="";
+            //			document.getElementById("password").value="";
+            //		}else{
+                        
+            //			alert("1111");
+            //			}
+            //	if(document.getElementById("password").value=="pass")
+            //		{
+                        //document.getElementById("user").value="";
+            //			document.getElementById("password").value="";
+            //		}
+            
+    //	}
+        
+        function keyenter(){
+            if(event.keyCode == 13)
+                login();
+            }
+        
+        function login(){
+            
+            if (document.getElementById("user").value=="" || document.getElementById("user").value=="아이디" ){alert("아이디를 입력하세요."); return;}
+            if (document.getElementById("password").value=="" || document.getElementById("password").value=="pass"){alert("패스워드를 입력하세요."); return;}
+            
+            saveId();	
+            document.forms[0].submit();
+            
+            }
+            
+            // 쿠키에 id를 저장.
+        function setsave(name, value, expiredays) {
+           // alert("cookie Save!!");
+            var today = new Date();
+            today.setDate(today.getDate() + expiredays);
+            document.cookie = name + "=" + escape(value) + "; path=/; expires="
+                    + today.toGMTString() + ";";
+          //  alert("cookie Save Complete!!");
+            
+        }
+        
+        // 버튼 클릭시 실행 function
+        function saveId(){
+            
+                saveLogin(document.getElementById("user").value);
+                
+        }
+    
+        // id를 받아와 쿠키에 저장할지 쿠키에서 삭제할지 결정.
+        function saveLogin(id) {
+           
+          if (document.getElementById("remember_chk").checked == true) {
+                // userid 쿠키에 id 값을 7일간 저장
+               setsave("user", id, 7);
+            } else {
+                // userid 쿠키 삭제
+               setsave("user", id, -1);
+            }
+        }
+        
+        // 화면 로드시 아이디
+        function getLogin() {
+            // userid 쿠키에서 id 값을 가져온다.
+            var cook = document.cookie + ";";
+            var idx = cook.indexOf("user", 0);
+            var val = "";
+    
+            if (idx != -1) {
+                cook = cook.substring(idx, cook.length);
+                begin = cook.indexOf("=", 0) + 1;
+                end = cook.indexOf(";", begin);
+                val = unescape(cook.substring(begin, end));
+            }
+    
+            // 가져온 쿠키값이 있으면
+            if (val != "") {
+             
+                document.getElementById("user").value = val;
+                document.getElementById("remember_chk").checked = true;
+            }
+        }
+            
+            
+            
+        
+    </script>
+    <body onload="getLogin()"">
+    <form name="astems_mb" id="astems_mb" action="https://groupware.astems.co.kr/mobile/s_login_check.php3" method="post" style="margin-left: 500px; margin-top: 10px;" >
+        <table width="300" border="1" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+        <table width="300" border="0" cellspacing="0" cellpadding="0" >
+            <tr>
+                <td height="50">
+            </tr>
+            <tr>
+            <td align="center"><B>아스템즈 기사 모바일<B></td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                                <td height="50">
+                        </tr>
+                        <tr>
+                            <td width="30">ID:</td>
+                            <td width="100"><input type='text' name='user' id='user' value='' /></td>
+                            <td><input type='checkbox' name='remember_chk' id='remember_chk'  >ID 저장</td>
+                        </tr>
+                        <tr>
+                            <td width="30">PW:</td>
+                            <td width="100"><input type='password' name='password' id='password' value=''  onkeydown="javascript:keyenter();"/></td>
+                            <td><input type="button" id="" name="" value="로그인" onclick="javascript:login();"/></td>
+                        </tr>
+                        <tr>
+                            <td height="20"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+    </tr>
+    </table>
+    </form>
+    </body>
+</html>
